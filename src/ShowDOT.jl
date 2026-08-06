@@ -6,6 +6,25 @@
 module ShowDOT
 
 
+using Sixel
+using FileIO
+using PNGFiles
+using Graphviz_jll
+
+const dotexe = Graphviz_jll.dot();
+
+include("0-storage.jl")
+export saveas, png, pdf, svg
+
+include("1-terminal.jl")
+export tshow
+export setdpi
+
+include("2-webpage.jl")
+export pshow
+
+include("3-autoshow.jl")
+export autoshow
 
 end # module ShowDOT
 
