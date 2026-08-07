@@ -7,7 +7,14 @@ $$
     }
 $$
 
+
+
 Show directed graph via DOT formatted string. Here the **Show**DOT means showing it inside a terminal 💻 or a webpage based notebook 📕 , or save it as a picture so as to show it inside other apps that can open it.
+
+
+![GitHub Created At](https://img.shields.io/github/created-at/sonosole/ShowDOT.jl?color=%233F6184) ![GitHub Release Date](https://img.shields.io/github/release-date/sonosole/ShowDOT.jl?color=%232684FC) ![GitHub Tag](https://img.shields.io/github/v/tag/sonosole/ShowDOT.jl?sort=date&color=%230288D1) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/sonosole/ShowDOT.jl) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/sonosole/ShowDOT.jl/total?color=%23E60012) [![Hits](https://hits.dwyl.com/sonosole/ShowDOT.jl.svg)](https://hits.dwyl.com/sonosole/ShowDOT.jl)
+![GitHub License](https://img.shields.io/github/license/sonosole/ShowDOT.jl?style=flat&logoColor=%23003A9A&color=%239558B2) ![Static Badge](https://img.shields.io/badge/Julia-v1.6%2B-%239558B2?logo=julia&link=https%3A%2F%2Fjulialang.org) ![Static Badge](https://img.shields.io/badge/email-sonosole%40163.com-%239558B2?logo=gmail)
+
 
 # Installation 💾
 
@@ -85,10 +92,9 @@ autoshow(dotstr::String)
 
 automatically shows DOT string when you are inside a terminal or Pluto or IJulia notebooks.
 
-
-| `autoshow` in term                        | `autoshow` in Pluto                    |
+| `autoshow` in term                          | `autoshow` in Pluto                      |
 | ------------------------------------------- | ---------------------------------------- |
-| ![img](doc/show-inside-terminal-auto.PNG) | ![img](doc/show-inside-pluto-auto.PNG) |
+| ![img](doc/show-inside-terminal-auto.PNG)   | ![img](doc/show-inside-pluto-auto.PNG)   |
 
 ## Save As Pictures 🗺️
 
