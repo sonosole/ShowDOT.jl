@@ -17,11 +17,11 @@ include("0-storage.jl")
 export saveas, png, pdf, svg
 
 include("1-terminal.jl")
-export tshow
+export tshow, pngshow
 export setdpi
 
 include("2-webpage.jl")
-export pshow
+export pshow, svgshow
 
 include("3-autoshow.jl")
 export autoshow

@@ -37,3 +37,14 @@ function tshow(dotsrc::String)
     return Sixel.sixel_encode(pngbuf)
 end
 
+
+function pngshow(dotsrc::String)
+    global dpi
+    dotbuf = IOBuffer();
+    dotstr = isdotfile(dotsrc) ? read(dotsrc, String) : dotsrc
+    run(pipeline(`$dotexe -q -Tpng -Gdpi=$dpi`,
+                 stdin=IOBuffer(dotstr),
+                 stdout=dotbuf));
+    return display(MIME("image/png"), take!(dotbuf))
+end
+

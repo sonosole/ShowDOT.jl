@@ -7,6 +7,7 @@ Return
 + :script     script mode
 """
 function detect_display_env()
+    isdefined(Main, :VSCodeServer) && return :vscode
     isdefined(Main, :PlutoRunner) && return :pluto
     isdefined(Main, :IJulia) && return :ijulia
     if Base.isinteractive() && isa(stdout, Base.TTY)
@@ -27,6 +28,7 @@ It's up to you where to show the DOT file. 😁
 function autoshow(dotsrc::String)
     showenv = detect_display_env()
     isequal(showenv, :pluto)    && return pshow(dotsrc)
+    isequal(showenv, :vscode)   && return svgshow(dotsrc)
     isequal(showenv, :ijulia)   && return pshow(dotsrc)
     isequal(showenv, :terminal) && return tshow(dotsrc)
     isequal(showenv, :script)   && return tshow(dotsrc)

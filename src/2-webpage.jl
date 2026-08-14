@@ -17,7 +17,18 @@ function pshow(dotsrc::String)
     run(pipeline(`$dotexe -q -Tsvg -Gdpi=$dpi`,
                  stdin=IOBuffer(dotstr),
                  stdout=dotbuf));
-    svgbuf = String(take!(dotbuf))
-    return Docs.HTML(svgbuf)
+    svgbuf = take!(dotbuf)
+    return Docs.HTML(String(svgbuf))
 end
 
+
+function svgshow(dotsrc::String)
+    global dpi
+    dotbuf = IOBuffer();
+    dotstr = isdotfile(dotsrc) ? read(dotsrc, String) : dotsrc
+    run(pipeline(`$dotexe -q -Tsvg -Gdpi=$dpi`,
+                 stdin=IOBuffer(dotstr),
+                 stdout=dotbuf));
+    svgbuf = take!(dotbuf)
+    return display(MIME("image/svg+xml"), String(svgbuf))
+end
