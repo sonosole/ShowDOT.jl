@@ -1,5 +1,5 @@
 """
-    Show directed graph via dot formatted string. Here the `Show`DOT means
+    Show directed graph via dot formatted string/file. Here the `Show`DOT means
     showing it inside a terminal, or save it as a picture so as to show it
     inside other apps that can open it.
 """
@@ -11,7 +11,7 @@ using FileIO
 using PNGFiles
 using Graphviz_jll
 
-const dotexe = Graphviz_jll.dot();
+include("misc.jl")
 
 include("0-storage.jl")
 export saveas, png, pdf, svg
@@ -25,6 +25,10 @@ export pshow
 
 include("3-autoshow.jl")
 export autoshow
+
+include("4-vt.jl")
+export vt, vt4up, vt6up, vt8up, vt24bit
+
 
 end # module ShowDOT
 

@@ -12,18 +12,23 @@ end
 
 
 """
-    tshow(dotstr::AbstractString)
+    tshow(dotsrc::AbstractString)
 
-Show dot format string inside terminal.
+Show dot format string/file inside terminal.
 !!! note 
     The terminal should support Sixel graphics.
-
+# Example
+```julia
+julia> tshow("digraph {a->b}")
+julia> tshow("/path/to/my.dot")
+```
 # Working pipeline
-dotstr ─►  dot engine ─►  in-momery PNG ─►  Sixel
+dotsrc ─►  dot engine ─►  in-momery PNG ─►  Sixel
 """
-function tshow(dotstr::String)
+function tshow(dotsrc::String)
     global dpi
     dotbuf = IOBuffer();
+    dotstr = isdotfile(dotsrc) ? read(dotsrc, String) : dotsrc
     run(pipeline(`$dotexe -q -Tpng -Gdpi=$dpi`,
                  stdin=IOBuffer(dotstr),
                  stdout=dotbuf));

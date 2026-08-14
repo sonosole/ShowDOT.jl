@@ -17,19 +17,19 @@ end
 
 
 """
-    autoshow(dotstr::AbstractString)
+    autoshow(dotsrc::AbstractString)
 
-Automatically Show dot format string inside terminal or Pluto or IJulia notebooks.
+Automatically Show dot format string/file inside terminal or Pluto or IJulia notebooks.
 It's up to you where to show the DOT file. 😁
 !!! note 
     The terminal should support Sixel graphics.
 """
-function autoshow(dotstr::String)
+function autoshow(dotsrc::String)
     showenv = detect_display_env()
-    isequal(showenv, :pluto)    && return pshow(dotstr)
-    isequal(showenv, :ijulia)   && return pshow(dotstr)
-    isequal(showenv, :terminal) && return tshow(dotstr)
-    isequal(showenv, :script)   && return tshow(dotstr)
+    isequal(showenv, :pluto)    && return pshow(dotsrc)
+    isequal(showenv, :ijulia)   && return pshow(dotsrc)
+    isequal(showenv, :terminal) && return tshow(dotsrc)
+    isequal(showenv, :script)   && return tshow(dotsrc)
     @info ":( Unknown display environment ..."
 end
 

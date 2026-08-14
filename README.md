@@ -5,16 +5,13 @@ $$
     \color{Orange}{DOT}
     \color{purple}{{}^{👁}⎣{}^{👁}}
     }
+
 $$
 
-
-
-Show directed graph via DOT formatted string. Here the **Show**DOT means showing it inside a terminal 💻 or a webpage based notebook 📕 , or save it as a picture so as to show it inside other apps that can open it.
-
+Show directed graph via DOT formatted `String` or a `*.dot` file. Here the **Show**DOT means showing it inside a terminal 💻 or a webpage based notebook 📕 , or save it as a picture so as to show it inside other apps that can open it.
 
 ![GitHub Created At](https://img.shields.io/github/created-at/sonosole/ShowDOT.jl?color=%233F6184) ![GitHub Release Date](https://img.shields.io/github/release-date/sonosole/ShowDOT.jl?color=%232684FC) ![GitHub Tag](https://img.shields.io/github/v/tag/sonosole/ShowDOT.jl?sort=date&color=%230288D1) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/sonosole/ShowDOT.jl) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/sonosole/ShowDOT.jl/total?color=%23E60012) [![Hits](https://hits.dwyl.com/sonosole/ShowDOT.jl.svg)](https://hits.dwyl.com/sonosole/ShowDOT.jl)
 ![GitHub License](https://img.shields.io/github/license/sonosole/ShowDOT.jl?style=flat&logoColor=%23003A9A&color=%239558B2) ![Static Badge](https://img.shields.io/badge/Julia-v1.6%2B-%239558B2?logo=julia&link=https%3A%2F%2Fjulialang.org) ![Static Badge](https://img.shields.io/badge/email-sonosole%40163.com-%239558B2?logo=gmail)
-
 
 # Installation 💾
 
@@ -29,7 +26,7 @@ using Pkg; Pkg.add("ShowDOT")
 It's a very simple API, pass the dot format string into `tshow`
 
 ```julia
-tshow(dotstr::AbstractString)
+tshow(dotstr_or_dotfile::AbstractString)
 ```
 
 here is an easy example
@@ -73,7 +70,7 @@ tshow(mygraph)
 With this simple API
 
 ```julia
-pshow(dotstr::String)
+pshow(dotstr_or_dotfile::String)
 ```
 
 we can show dot format string inside 🎈**Pluto** notebook
@@ -87,14 +84,29 @@ we can show dot format string inside 🎈**Pluto** notebook
 This simple API
 
 ```julia
-autoshow(dotstr::String)
+autoshow(dotstr_or_dotfile::String)
 ```
 
 automatically shows DOT string when you are inside a terminal or Pluto or IJulia notebooks.
 
-| `autoshow` in term                          | `autoshow` in Pluto                      |
+
+| `autoshow` in term                        | `autoshow` in Pluto                    |
 | ------------------------------------------- | ---------------------------------------- |
-| ![img](doc/show-inside-terminal-auto.PNG)   | ![img](doc/show-inside-pluto-auto.PNG)   |
+| ![img](doc/show-inside-terminal-auto.PNG) | ![img](doc/show-inside-pluto-auto.PNG) |
+
+If `autoshow` fails 💔, please fall back to `tshow` or `pshow` by yourself 😁
+
+## Low Quality Pixels in Terminal 🏁
+
+```julia
+vt(dotsrc::String)
+vt4up(dotsrc::String)
+vt6up(dotsrc::String)
+vt8up(dotsrc::String)
+vt24bit(dotsrc::String)
+```
+
+their usage is the same as `tshow`. I bet you won't like it 🤣
 
 ## Save As Pictures 🗺️
 
@@ -111,14 +123,14 @@ my_pic_file = "/home/work/pic.png"
 saveas(my_pic_file, mygraph)
 ```
 
-supported picture types are svg/svgz, png, pdf, canon, cmap, cmapx, cmapx_np, dot, dot_json, eps, fig, gv, imap, imap_np, ismap, json, json0, mp, pdf, pic, plain/plain-ext, pov, ps, ps2, tk, vdx, vml/vmlz, xdot/xdot1.2/xdot1.4/xdot_json.
+supported picture types are: canon cmap cmapx cmapx_np dot dot_json eps fig gv imap imap_np ismap json json0 kitty kittyz pdf pic plain plain-ext png pov ps ps2 svg svg_inline svgz tk vt vt-24bit vt-4up vt-6up vt-8up vt-8up2 xdot xdot1.2 xdot1.4 xdot_json.
 
 ### Three Convenient APIs 📁
 
 ```julia
-png(path_and_name_with_no_suffix::String, dotstr::String)
-svg(path_and_name_with_no_suffix::String, dotstr::String)
-pdf(path_and_name_with_no_suffix::String, dotstr::String)
+png(path_and_name_with_no_suffix::String, dotstr_or_dotfile::String)
+svg(path_and_name_with_no_suffix::String, dotstr_or_dotfile::String)
+pdf(path_and_name_with_no_suffix::String, dotstr_or_dotfile::String)
 ```
 
 for example, save `mygraph::String` as a svg file
@@ -128,9 +140,17 @@ my_pic_file = "/home/work/pic"
 svg(my_pic_file, mygraph)
 ```
 
+or save a `/path/to/my.dot` as a svg file
+
+```julia
+my_pic_file = "/home/work/pic"
+svg(my_pic_file, "/path/to/my.dot")
+```
+
 then `/home/work/pic.svg` is saved.
 
 ## Advanced Showcase for User Defined Struct
+
 Just see a minimal example
 
 ```julia
@@ -159,4 +179,3 @@ end
 ```
 
 now you can customize your own pretty shows. 💖
-
