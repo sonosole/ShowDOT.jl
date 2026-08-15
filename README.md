@@ -13,11 +13,24 @@ Show directed graph via DOT formatted `String` or a `*.dot` file. Here the **Sho
 ![GitHub Created At](https://img.shields.io/github/created-at/sonosole/ShowDOT.jl?color=%233F6184) ![GitHub Release Date](https://img.shields.io/github/release-date/sonosole/ShowDOT.jl?color=%232684FC) ![GitHub Tag](https://img.shields.io/github/v/tag/sonosole/ShowDOT.jl?sort=date&color=%230288D1) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/sonosole/ShowDOT.jl) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/sonosole/ShowDOT.jl/total?color=%23E60012) [![Hits](https://hits.dwyl.com/sonosole/ShowDOT.jl.svg)](https://hits.dwyl.com/sonosole/ShowDOT.jl)
 ![GitHub License](https://img.shields.io/github/license/sonosole/ShowDOT.jl?style=flat&logoColor=%23003A9A&color=%239558B2) ![Static Badge](https://img.shields.io/badge/Julia-v1.6%2B-%239558B2?logo=julia&link=https%3A%2F%2Fjulialang.org) ![Static Badge](https://img.shields.io/badge/email-sonosole%40163.com-%239558B2?logo=gmail)
 
-# Installation 💾
+ Installation 💾
 
 ```julia
 using Pkg; Pkg.add("ShowDOT")
 ```
+
+# Navigation of APIs
+
+| Where You Are | ![](doc/logo-term.svg) | ![](doc/logo-pluto.svg) |        ![](doc/logo-jupyter.svg)        |     ![](doc/logo-vscode.svg)     |
+| :-------------: | :----------------------: | :-----------------------: | :----------------------------------------: | :---------------------------------: |
+|  What to Use  |  *`autoshow`* `tshow`  |  *`autoshow`* `pshow`  | *`autoshow`* `pshow` `svgshow` `pngshow` | *`autoshow`* `svgshow` `pngshow` |
+
+`autoshow` works everywhere, but if it fails 💔, fall back to others in the above table 😁.
+
++ In Jupyter, `pngshow` output can be exported as a **.png* file, `svgshow` output can be exported as a **.svg* or **.pdf* file.
++ In VSCode, `pngshow` output can be exported as a **.png* file, `svgshow` output can be exported as a **.svg* file.
+
+All the APIs in table accept only one input argument which is a DOT format string or a `/path/to/my.dot` file.
 
 # Usage 👨‍🏫
 
@@ -76,7 +89,7 @@ pshow(dotstr_or_dotfile::String)
 we can show dot format string inside 🎈**Pluto** notebook
 
 <div align="center">
-  <img src="doc/show-inside-pluto.PNG" alt="show-in-terminal" width="800"/>
+  <img src="doc/show-inside-pluto.PNG" alt="show-in-pluto" width="800"/>
 </div>
 
 ## Automatically Show Wherever You Are 🎡
@@ -87,14 +100,12 @@ This simple API
 autoshow(dotstr_or_dotfile::String)
 ```
 
-automatically shows DOT string when you are inside a terminal or Pluto or IJulia notebooks.
+automatically shows DOT string/file when you are inside a terminal or Pluto or IJulia notebooks.
 
 
-| `autoshow` in term                        | `autoshow` in Pluto                    | `autoshow` in VSCode                    |
-|-------------------------------------------|----------------------------------------|-----------------------------------------|
+| `autoshow` in term                        | `autoshow` in Pluto                    | `autoshow` in VSCode                   |
+| ------------------------------------------- | ---------------------------------------- | ----------------------------------------- |
 | ![img](doc/show-inside-terminal-auto.PNG) | ![img](doc/show-inside-pluto-auto.PNG) | ![img](doc/show-inside-vscode-auto.PNG) |
-
-If `autoshow` fails 💔, please fall back to `tshow` or `pshow` by yourself 😁
 
 ## Low Quality Pixels in Terminal 🏁
 
@@ -113,7 +124,7 @@ their usage is the same as `tshow`. I bet you won't like it 🤣
 ### Unified Common Interface 📁
 
 ```julia
-saveas(path_to_file::String, dotstr::String)
+saveas(path_to_file::String, dotsrc::String)
 ```
 
 for example, save `mygraph::String` as a png file
